@@ -1,17 +1,16 @@
 using UnityEngine;
 
-public class testfile : MonoBehaviour
+public class sdlksd : MonoBehaviour
 {
-    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //테스트 입니다.
+        //kkkkkkkkkkkk
     }
 
     // Update is called once per frame
     void Update()
     {
-        //This is just a test.
+        //jjjjjjjj
     }
 }
