@@ -11,6 +11,6 @@ public class help_me : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("2025_9_4_9_4");
+        Debug.Log("2025_9_5_12_28");
     }
 }
