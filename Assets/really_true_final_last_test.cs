@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class help_me : MonoBehaviour
+public class really_true_final_last_test : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -11,6 +11,6 @@ public class help_me : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("2025_9_5_2_5");
+        Debug.Log("Let_Me_Sleep");
     }
 }
