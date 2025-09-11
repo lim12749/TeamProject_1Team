@@ -8,6 +8,12 @@ public class MonsterAI : MonoBehaviour
     public float speed = 2f;      // 몬스터 이동 속도
 
     private int currentWaypointIndex = 0; // 현재 이동 중인 웨이포인트
+    private Animator animator; // 몬스터 애니메이터
+
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     void Update()
     {
@@ -41,6 +47,12 @@ public class MonsterAI : MonoBehaviour
         // 닿은 오브젝트가 "Player" 태그를 가지고 있으면
         if (other.CompareTag("Player"))
         {
+            // 공격 애니메이션 실행
+            if (animator != null)
+            {
+                animator.SetTrigger("Attack");
+            }
+
             // 플레이어 오브젝트를 비활성화하여 사망 처리
             other.gameObject.SetActive(false);
             // 디버그 로그로 사망 메시지 출력
