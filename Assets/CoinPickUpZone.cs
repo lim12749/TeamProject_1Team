@@ -1,46 +1,49 @@
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 public class CoinPickUpZone : MonoBehaviour
 {
-    public Text coinText;  // UI 텍스트
+    public TextMeshProUGUI coinText;  // UI 텍스트를 연결할 변수
     public int coinValue = 10;  // 코인 값
     private bool playerInRange = false;  // 플레이어가 범위 안에 있는지 여부
-    private GameObject coinObject;  // 코인 오브젝트
 
     private void Start()
     {
-        // 코인 오브젝트를 찾아서 저장 (이 코드를 필요에 맞게 수정할 수 있음)
-        coinObject = GameObject.Find("Coin"); // 코인 오브젝트 이름
+        // 기본값 설정: "Coin : 0"
+        coinText.text = "Coin : 0";  // 시작 시 UI 텍스트를 "Coin : 0"으로 설정
     }
 
     private void Update()
     {
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            // 코인 오브젝트 제거
-            Destroy(coinObject);
+            // 빈 오브젝트와 자식인 코인 오브젝트를 모두 제거
+            Destroy(gameObject);  // 빈 오브젝트 자체를 삭제
 
             // 코인 값 UI 업데이트
-            int currentCoins = int.Parse(coinText.text);  // 기존 코인 값
+            int currentCoins = int.Parse(coinText.text.Split(':')[1].Trim());  // 기존 코인 값 추출
             currentCoins += coinValue;  // 코인 값 10 추가
-            coinText.text = currentCoins.ToString();  // UI에 코인 값 반영
+            coinText.text = "Coin : " + currentCoins.ToString();  // UI에 코인 값 반영
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))  // 플레이어가 범위에 들어왔을 때
+        // 플레이어가 범위에 들어갔을 때
+        if (other.CompareTag("Player"))
         {
             playerInRange = true;
+            Debug.Log("플레이어가 범위에 들어왔습니다.");
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))  // 플레이어가 범위를 벗어났을 때
+        // 플레이어가 범위를 벗어났을 때
+        if (other.CompareTag("Player"))
         {
             playerInRange = false;
+            Debug.Log("플레이어가 범위를 벗어났습니다.");
         }
     }
 }
