@@ -11,7 +11,7 @@ public class InputReader : MonoBehaviour
     public bool SprintHeld { get; private set; }
 
     public event Action InteractPressed;
-    public event Action ReloadPressed;
+   // public event Action ReloadPressed;
 
     PlayerInput pi;
     InputAction move, look, aim, sprint, interact, reload;
@@ -21,10 +21,10 @@ public class InputReader : MonoBehaviour
         pi = GetComponent<PlayerInput>();
         var a = pi.actions;
         move = a.FindAction("Move", true);
-        look = a.FindAction("Look", true);
-        aim = a.FindAction("Aim", true);
+       // look = a.FindAction("Look", true);
+     //   aim = a.FindAction("Aim", true);
         sprint = a.FindAction("Sprint", true);
-        interact = a.FindAction("Interact", true);
+      //  interact = a.FindAction("Interact", true);
         //reload   = a.FindAction("Reload",   true);
     }
 
@@ -33,16 +33,16 @@ public class InputReader : MonoBehaviour
         move.performed += ctx => Move = ctx.ReadValue<Vector2>();
         move.canceled += _ => Move = Vector2.zero;
 
-        look.performed += ctx => Look = ctx.ReadValue<Vector2>();
-        look.canceled += _ => Look = Vector2.zero;
+        //look.performed += ctx => Look = ctx.ReadValue<Vector2>();
+        //look.canceled += _ => Look = Vector2.zero;
 
-        aim.started += _ => AimHeld = true;
-        aim.canceled += _ => AimHeld = false;
+        //aim.started += _ => AimHeld = true;
+        //aim.canceled += _ => AimHeld = false;
 
         sprint.started += _ => SprintHeld = true;
         sprint.canceled += _ => SprintHeld = false;
 
-        interact.performed += _ => InteractPressed?.Invoke();
+        //interact.performed += _ => InteractPressed?.Invoke();
         // reload.performed   += _ => ReloadPressed?.Invoke();
     }
 
@@ -50,13 +50,13 @@ public class InputReader : MonoBehaviour
     {
         move.performed -= ctx => Move = ctx.ReadValue<Vector2>();
         move.canceled -= _ => Move = Vector2.zero;
-        look.performed -= ctx => Look = ctx.ReadValue<Vector2>();
-        look.canceled -= _ => Look = Vector2.zero;
-        aim.started -= _ => AimHeld = true;
-        aim.canceled -= _ => AimHeld = false;
+        //look.performed -= ctx => Look = ctx.ReadValue<Vector2>();
+       // look.canceled -= _ => Look = Vector2.zero;
+        //aim.started -= _ => AimHeld = true;
+       // aim.canceled -= _ => AimHeld = false;
         sprint.started -= _ => SprintHeld = true;
         sprint.canceled -= _ => SprintHeld = false;
-        interact.performed -= _ => InteractPressed?.Invoke();
+     //   interact.performed -= _ => InteractPressed?.Invoke();
         //  reload.performed   -= _ => ReloadPressed?.Invoke();
     }
 }

@@ -3,6 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class SimpleMover : MonoBehaviour
 {
+    public Animator anime;
+    public SimpleMover mover;
     [Header("Refs")]
     [SerializeField] Transform cam;       // 카메라 기준 이동용(없으면 월드 기준)
     [SerializeField] InputReader input;   // 선택: 없으면 WASD+Shift 사용
@@ -59,6 +61,7 @@ public class SimpleMover : MonoBehaviour
         // 4) 이동 (중력 자동 적용)
         cc.SimpleMove(moveDir * targetSpeed);
 
+
         // 5) 회전(이동 방향 바라보기)
         if (faceMoveDir && IsMoving)
         {
@@ -68,5 +71,17 @@ public class SimpleMover : MonoBehaviour
 
         // 6) 애니 속도(0~1)
         Speed01 = Mathf.MoveTowards(Speed01, Mathf.InverseLerp(0f, runSpeed, targetSpeed), 8f * Time.deltaTime);
+
+        if (mover != null && IsMoving)
+        {
+             
+            anime.SetFloat("speed", targetSpeed);
+
+        }
+        
+        else
+        {
+            anime.SetFloat("speed", 0f);
+        }
     }
 }
