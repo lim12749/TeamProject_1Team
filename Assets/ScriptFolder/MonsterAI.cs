@@ -18,6 +18,14 @@ public class MonsterAI : MonoBehaviour
         // 현재 웨이포인트 방향으로 이동
         Transform targetWaypoint = waypoints[currentWaypointIndex];
         Vector3 direction = (targetWaypoint.position - transform.position).normalized;
+
+        // 이동 방향으로 회전
+        if (direction != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
+        }
+
         transform.position += direction * speed * Time.deltaTime;
 
         // 웨이포인트에 거의 도달하면 다음 웨이포인트로 인덱스 변경 (순환)
