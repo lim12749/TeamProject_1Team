@@ -10,7 +10,7 @@ public class CoinPickUpZone : MonoBehaviour
     private void Start()
     {
         // 기본값 설정: "Coin : 0"
-        coinText.text = "Coin : 0";  // 시작 시 UI 텍스트를 "Coin : 0"으로 설정
+       // coinText.text = "Coin : 0";  // 시작 시 UI 텍스트를 "Coin : 0"으로 설정
     }
 
     private void Update()

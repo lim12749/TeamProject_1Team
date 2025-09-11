@@ -10,7 +10,7 @@ public class InputReader : MonoBehaviour
     public bool AimHeld { get; private set; }
     public bool SprintHeld { get; private set; }
 
-    public event Action InteractPressed;
+    //public event Action InteractPressed;
    // public event Action ReloadPressed;
 
     PlayerInput pi;
